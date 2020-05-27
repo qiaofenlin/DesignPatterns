@@ -6,7 +6,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         Msg msg = new Msg();
-        msg.setMsg("大家好:)，<script>，欢迎访问 mashibing.com ，大家都是996 ");
+        msg.setMsg("大家好:)，<script>，欢迎访问 mashibing.com mashibing.com ，大家都是996 ");
 
         FilterChain fc = new FilterChain();
         fc.add(new HTMLFilter())
@@ -82,7 +82,9 @@ class URLFilter implements Filter {
     @Override
     public boolean doFilter(Msg m) {
         String r = m.getMsg();
-        r = r.replace("mashibing.com", "http://www.mashibing.com");
+//        System.out.println("URLFilter"+r);
+//        r = r.replaceAll("mashibing.com", "http://www.mashibing.com");
+        r = r.replaceAll("mashibing.com", "http");
         m.setMsg(r);
         return true;
     }

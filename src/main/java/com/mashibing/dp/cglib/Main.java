@@ -16,7 +16,8 @@ public class Main {
         enhancer.setSuperclass(Tank.class);
         enhancer.setCallback(new TimeMethodInterceptor());
         Tank tank = (Tank)enhancer.create();
-        tank.move();
+//        tank.move();
+        tank.go();
     }
 }
 
@@ -29,6 +30,7 @@ class TimeMethodInterceptor implements MethodInterceptor {
         System.out.println("before");
         Object result = null;
         result = methodProxy.invokeSuper(o, objects);
+        System.out.println(result);
         System.out.println("after");
         return result;
     }
@@ -42,6 +44,11 @@ class Tank {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public int go() {
+        System.out.println("gooooooo");
+        return 1;
     }
 }
 
